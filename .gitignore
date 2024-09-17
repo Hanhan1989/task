@@ -1,0 +1,30 @@
+# Node modules
+/node_modules/
+
+# Build output
+/dist/
+# TypeScript output
+/**/*.tsbuildinfo
+
+# Electron
+/.electron/
+*.dmg
+*.exe
+*.AppImage
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# Environment files
+.env
+
+# Other
+*.tgz
