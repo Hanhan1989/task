@@ -1,9 +1,0 @@
-MIT License
-
-Copyright (c) [2024] [Hanhan Chen]
-
-Permission is granted to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of this software. This license is provided on the condition that the copyright notice and this permission notice are included in all copies or substantial portions of the software.
-
-Please include a reference to the original repository when redistributing or mentioning the software.
-
-The software is provided "as is", without warranty of any kind. The authors are not liable for any claims, damages, or other liabilities.
