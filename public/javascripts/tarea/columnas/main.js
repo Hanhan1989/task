@@ -1,15 +1,12 @@
-  // Hacemos que los elementos de cada columna sean movibles
-  new Sortable(document.getElementById('columna1'), {
-    group: 'shared', // Agrupación compartida entre las columnas
-    animation: 150
-  });
+import { TodoColumn } from './TodoColumn.js'
+import { WorkingColumn } from './WorkingColumn.js'
+import { DoneColumn } from './DoneColumn.js'
 
-  new Sortable(document.getElementById('columna2'), {
-    group: 'shared',
-    animation: 150
-  });
+const todoColumn = new TodoColumn()
+todoColumn.initSortable()
 
-  new Sortable(document.getElementById('columna3'), {
-    group: 'shared',
-    animation: 150
-  });
+const workingColumn = new WorkingColumn()
+workingColumn.initSortable()
+
+const doneColumn = new DoneColumn()
+doneColumn.initSortable()
