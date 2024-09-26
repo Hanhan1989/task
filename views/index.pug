@@ -1,5 +1,32 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+  .container
+    .row
+      form#ajax-form
+        .mb-3
+          input.form-control.form-control-lg(type="text", placeholder="Escribe tarea", aria-label=".form-control-lg example", id="inputField")
+    .row
+      .col-4
+        h5 Columna 1
+        ul#columna1.list-group
+          li.list-group-item Elemento 1
+          li.list-group-item Elemento 2
+          li.list-group-item Elemento 3
+      .col-4
+        h5 Columna 2
+        ul#columna2.list-group
+          li.list-group-item Elemento 4
+          li.list-group-item Elemento 5
+          li.list-group-item Elemento 6
+      .col-4
+        h5 Columna 3
+        ul#columna3.list-group
+          li.list-group-item Elemento 7
+          li.list-group-item Elemento 8
+          li.list-group-item Elemento 9
+
+  script(src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js")
+  script(src='/javascripts/tarea/formulario/envio_de_datos/main.js')
+  script(src="/javascripts/tarea/columnas/main.js") 

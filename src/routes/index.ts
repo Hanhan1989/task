@@ -4,7 +4,7 @@ const router = Router();
 
 /* GET home page. */
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Tarea' });
 });
 
 export default router;

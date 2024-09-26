@@ -1,4 +1,4 @@
-# MyAP
+# TASK APP
 
 TASK is a desktop application built with Electron and Express, developed using TypeScript. This project includes a basic structure for a web application with an Express backend and a desktop user interface using Electron.
 

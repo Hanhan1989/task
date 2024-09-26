@@ -22,6 +22,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// Configurar la carpeta 'node_modules' como estática para servir Bootstrap
+app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
+
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(createError(404));
