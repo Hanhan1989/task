@@ -8,7 +8,6 @@ export class Column {
     }
 
     initSortable() {
-        console.log(this.id)
         new Sortable(document.getElementById(this.id), {
             group: 'shared', // Agrupación compartida entre las columnas
             animation: 150,
