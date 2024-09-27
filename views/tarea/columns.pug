@@ -1,12 +1,12 @@
 .col-4
     h4 To Do
     ul#todo-column.list-group(data-bind="foreach: tasksTodo")
-        li.list-group-item(contenteditable="true", data-bind="text: titulo, event: { blur: $parent.editTask }")
+        li.list-group-item(data-bind="text: titulo, event: { dblclick: $parent.enableEditing, blur: $parent.editTask }")
 .col-4
     h4 Working ...
     ul#working-column.list-group(data-bind="foreach: tasksWorking")
-        li.list-group-item(contenteditable="true", data-bind="text: titulo, event: { blur: $parent.editTask }")
+        li.list-group-item(data-bind="text: titulo, event: { dblclick: $parent.enableEditing, blur: $parent.editTask }")
 .col-4
     h4 Done
     ul#done-column.list-group(data-bind="foreach: tasksDone")
-        li.list-group-item(contenteditable="true", data-bind="text: titulo, event: { blur: $parent.editTask }")
+        li.list-group-item(data-bind="text: titulo, event: { dblclick: $parent.enableEditing, blur: $parent.editTask }")

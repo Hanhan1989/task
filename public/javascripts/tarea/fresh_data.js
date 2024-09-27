@@ -20,6 +20,11 @@ class ViewModel {
         }
     }
 
+    enableEditing(task, event) {
+        event.target.contentEditable = true;
+        event.target.focus(); // Hacer foco en el elemento editable
+    }
+
     editTask(task, event) {
         const originalValue = task.titulo.trim();
         const newValue = event.target.innerText.trim();
