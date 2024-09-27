@@ -19,6 +19,17 @@ class ViewModel {
             console.error('Error al obtener los tasks:', error);
         }
     }
+
+    editTask(task, event) {
+        const originalValue = task.titulo.trim();
+        const newValue = event.target.innerText.trim();
+
+        if (newValue !== originalValue) {
+            console.log('Valor cambiado:', newValue);
+            console.log('Id de la tarea:', task.id)
+            // Aquí podrías enviar la actualización al servidor o realizar alguna acción
+        }
+    }
 }
 
 const viewModelInstance = new ViewModel();
