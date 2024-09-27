@@ -1,18 +1,12 @@
 .col-4
     h4 To Do
-    ul#todo-column.list-group
-        li.list-group-item Elemento 1
-        li.list-group-item Elemento 2
-        li.list-group-item Elemento 3
+    ul#todo-column.list-group(data-bind="sortable: {foreach: tasksTodo}")
+        li.list-group-item(data-bind="text: titulo")
 .col-4
     h4 Working ...
-    ul#working-column.list-group
-        li.list-group-item Elemento 4
-        li.list-group-item Elemento 5
-        li.list-group-item Elemento 6
+    ul#working-column.list-group(data-bind="sortable: {foreach: tasksWorking}")
+        li.list-group-item(data-bind="text: titulo")
 .col-4
     h4 Done
-    ul#done-column.list-group
-        li.list-group-item Elemento 7
-        li.list-group-item Elemento 8
-        li.list-group-item Elemento 9
+    ul#done-column.list-group(data-bind="sortable: {foreach: tasksDone}")
+        li.list-group-item(data-bind="text: titulo")
