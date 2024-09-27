@@ -1,4 +1,4 @@
-class ViewModel {
+class Tasks {
 
     tasksTodo = ko.observableArray([])
     tasksWorking = ko.observableArray([])
@@ -37,5 +37,5 @@ class ViewModel {
     }
 }
 
-const viewModelInstance = new ViewModel();
-ko.applyBindings(viewModelInstance);
+const tasks = new Tasks();
+ko.applyBindings(tasks);

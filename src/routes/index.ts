@@ -28,9 +28,10 @@ router.get('/tasks', (req: Request, res: Response, next: NextFunction) => {
 
 /* POST endpoint to receive data */
 router.post('/tarea/data', (req: Request, res: Response, next: NextFunction) => {
-  const receivedData = req.body; 
+  const receivedData = req.body;
+  const new_task = {id: 7, titulo: receivedData.new_task, estado: 'todo', posicion: 400} 
   console.log('Datos recibidos:', receivedData.new_task);
-  res.status(200).json({ message: 'Datos recibidos correctamente', data: receivedData });
+  res.status(200).json({ message: 'Datos recibidos correctamente', new_task: new_task });
 });
 
 export default router;
