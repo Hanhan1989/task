@@ -20,10 +20,10 @@ export class TaskRepository {
   }
 
   // Crea una nueva tarea
-  async createTask(titulo: string, estado: string, posicion: number): Promise<void> {
-    const query = 'INSERT INTO tasks (titulo, estado, posicion) VALUES (?, ?, ?)'
+  async createTask(task: Omit<Task, 'id'>): Promise<void> {
+    const query = 'INSERT INTO tasks (titulo, estado, posicion) VALUES (?, ?, ?)';
     const db = await this.dbInstance.openDb()
-    await db.run(query, titulo, estado, posicion)
+    await db.run(query, task.titulo, task.estado, task.posicion);
   }
 
   // Actualiza una tarea existente por su ID
