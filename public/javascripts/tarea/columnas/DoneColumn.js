@@ -2,7 +2,10 @@ import { Column } from "./Column.js";
 
 export class DoneColumn extends Column
 {
-    constructor() {
+     id = 'done-column'
+     estado = 'done'
+   
+     constructor() {
         super(); // Llama al constructor de la clase base
         this.id = 'done-column'; // Asignar el id directamente
       }

@@ -27,10 +27,10 @@ export class TaskRepository {
   }
 
   // Actualiza una tarea existente por su ID
-  async updateTask(id: number, titulo: string, estado: string, posicion: number): Promise<void> {
+  async updateTask(task: Task): Promise<void> {
     const query = 'UPDATE tasks SET titulo = ?, estado = ?, posicion = ? WHERE id = ?'
     const db = await this.dbInstance.openDb()
-    await db.run(query, titulo, estado, posicion, id)
+    await db.run(query, task.titulo, task.estado, task.posicion, task.id)
   }
 
   // Elimina una tarea por su ID
