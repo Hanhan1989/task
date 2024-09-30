@@ -10,31 +10,48 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
 })
 
 /* Get endpoint to receive taskes */
-router.get('/tasks', (req: Request, res: Response, next: NextFunction) => {
-  const tasks: Task[] = [
-    { id: 1, titulo: "Aprender TypeScript", estado: "todo", posicion: 10 },
-    { id: 2, titulo: "Aprender Php", estado: "todo", posicion: 20 },
-    { id: 3, titulo: "Aprender Javascript", estado: "todo", posicion: 30 },
-    { id: 4, titulo: "Crear una aplicación", estado: "working", posicion: 200 },
-    { id: 5, titulo: "Crear una página web", estado: "working", posicion: 230 },
-    { id: 6, titulo: "Revisar el código", estado: "done", posicion: 300 }
-  ]
-
- const tasksTodo: Task[] = tasks.filter(task => task.estado === "todo")
- const tasksWorking: Task[] = tasks.filter(task => task.estado === "working")
- const tasksDone: Task[] = tasks.filter(task => task.estado === "done")
-
-  res.status(200).json({ message: 'Datos recibidos correctamente', tasksTodo: tasksTodo, tasksWorking: tasksWorking, tasksDone: tasksDone })
+router.get('/tasks', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const taskRepository: TaskRepository = new TaskRepository();
+    
+    const tasks: Task[] = await taskRepository.getAllTasks();
+    
+    // Función para agrupar las tareas por estado
+    const groupTasksByState = (state: string) => tasks.filter(task => task.estado === state);
+    
+    // Agrupación de tareas
+    const tasksTodo = groupTasksByState('todo');
+    const tasksWorking = groupTasksByState('working');
+    const tasksDone = groupTasksByState('done');
+    
+    // Respuesta JSON con desestructuración
+    res.status(200).json({
+      message: 'Datos recibidos correctamente',
+      tasksTodo,
+      tasksWorking,
+      tasksDone,
+    });
+  } catch (error) {
+    next(error); // Manejo de errores
+  }
 })
 
 /* POST endpoint to receive data */
-router.post('/tarea/data', (req: Request, res: Response, next: NextFunction) => {
-  const receivedData = req.body
-  const new_task: Omit<Task, 'id'>  = {titulo: receivedData.new_task, estado: 'todo', posicion: 400} 
-  const taskRepository: TaskRepository = new TaskRepository()
-  taskRepository.createTask(new_task)
-  console.log('Datos recibidos:', receivedData.new_task)
-  res.status(200).json({ message: 'Datos recibidos correctamente', new_task: new_task })
+router.post('/tarea/data', async(req: Request, res: Response, next: NextFunction) => {
+  const { new_task: titulo, posicion } = req.body;
+  const newTask: Omit<Task, 'id'> = { titulo, estado: 'todo', posicion };
+  
+  const taskRepository: TaskRepository = new TaskRepository();
+  
+  try {
+    await taskRepository.createTask(newTask);
+    console.log('Nueva tarea creada:', newTask);
+    res.status(200).json({ message: 'Datos recibidos correctamente', new_task: newTask });
+  } catch (error) {
+    console.error('Error creando la tarea:', error);
+    res.status(500).json({ message: 'Error al crear la tarea', error });
+  }
+  
 })
 
 export default router
