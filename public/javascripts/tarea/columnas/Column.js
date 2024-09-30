@@ -1,3 +1,4 @@
+import {ColumnHelper} from './ColumnHelper.js'
 
 export class Column {
     // La clase hija asignará su propio id
@@ -23,48 +24,30 @@ export class Column {
 
         // Accediendo al valor de data-task-id desde el elemento movido
         const taskId = Number(evt.item.dataset.taskId);
-        const estado = this.getColumName(evt)
+        const columnHelper = new ColumnHelper();
+        const estado = columnHelper.getColumName(evt)
         const data = {id: taskId, estado: estado, posicion: 8}
 
-     try {
-         // Enviar los datos a la URL mediante el método POST
-         const response = await fetch('/tarea/update', {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/json',
-             },
-             body: JSON.stringify(data), // Convertir el objeto a JSON
-         });
+        try {
+            // Enviar los datos a la URL mediante el método POST
+            const response = await fetch('/tarea/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data), // Convertir el objeto a JSON
+            });
 
-         // Verificar si la petición fue exitosa
-         if (response.ok) {
-             const result = await response.json()
-             console.log('Tarea enviada:', result)
-         } else {
-             console.error('Error al enviar la tarea')
-         }
-     } catch (error) {
-         console.error('Error en la solicitud:', error)
-     }
-    }
-
-    
-    getColumName(evt) {
-        let estado;
-        switch (evt.to.id) {
-            case 'todo-column':
-                estado = 'todo';
-                break;
-            case 'working-column':
-                estado = 'working';
-                break;
-            case 'done-column':
-                estado = 'done';
-                break;
-            default:
-                estado = 'unknown'; // Por si acaso, en caso de que no coincida
+            // Verificar si la petición fue exitosa
+            if (response.ok) {
+                const result = await response.json()
+                console.log('Tarea enviada:', result)
+            } else {
+                console.error('Error al enviar la tarea')
+            }
+        } catch (error) {
+            console.error('Error en la solicitud:', error)
         }
-    
-        return estado;
     }
+
 }
