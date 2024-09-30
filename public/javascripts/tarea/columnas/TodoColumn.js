@@ -1,9 +1,10 @@
 import { Column } from "./Column.js";
+import {STATES} from './States.js'
 
 export class TodoColumn extends Column
 {
-    id = 'todo-column'
-    estado = 'todo'
+    id = STATES.column1.id
+    estado = STATES.column1.name
 
     constructor() {
         super(); // Llama al constructor de la clase base

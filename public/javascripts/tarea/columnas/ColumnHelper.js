@@ -1,22 +1,24 @@
+import {STATES} from './States.js'
+
 export class ColumnHelper {
     // Método para obtener el estado basado en la columna
     getColumName(evt) {
-        let estado;
+        let state;
 
         switch (evt.to.id) {
-            case 'todo-column':
-                estado = 'todo';
+            case STATES.column1.id:
+                state = STATES.column1.name;
                 break;
-            case 'working-column':
-                estado = 'working';
+            case STATES.column2.id:
+                state = STATES.column2.name;
                 break;
-            case 'done-column':
-                estado = 'done';
+            case STATES.column3.id:
+                state = STATES.column3.name;
                 break;
             default:
-                estado = 'unknown'; // Por si acaso, en caso de que no coincida
+                state = 'unknown'; // Por si acaso, en caso de que no coincida
         }
 
-        return estado;
+        return state;
     }
 }
