@@ -56,8 +56,6 @@ router.post('/tarea/data', async (req: Request, res: Response, next: NextFunctio
 
 /* POST endpoint to update data */
 router.post('/tarea/update', async (req: Request, res: Response) => {
-  console.log('Cuerpo de la solicitud:', req.body); // Verificar la estructura del cuerpo
-
   try {
       const tasks = req.body.tasks; // Accede al array tasks
 
@@ -90,5 +88,33 @@ router.post('/tarea/update', async (req: Request, res: Response) => {
       res.status(500).json({ message: 'Error actualizando las tareas' });
   }
 })
+
+
+/* POST endpoint to update data */
+router.post('/tarea/update/titulo', async (req: Request, res: Response) => {
+  try {
+    const { id, titulo } = req.body; // Accede al array tasks
+    const taskRepository: TaskRepository = new TaskRepository();
+    const existingTask: Task | null = await taskRepository.getTaskById(id);
+
+    if (!existingTask) {
+      console.log(`Tarea con ID ${id} no encontrada`);
+      return res.status(400).json({ error: 'no se encuentra la tarea' });
+    }
+
+    const taskToUpdate: Task = {
+      ...existingTask,
+      id: id,
+      titulo: titulo, // Mantenemos el título existente
+    }
+
+    await taskRepository.updateTask(taskToUpdate);
+    res.status(200).json({ message: 'Tareas actualizadas correctamente' });
+  } catch (error) {
+    console.error('Error actualizando las tareas:', error);
+    res.status(500).json({ message: 'Error actualizando las tareas' });
+  }
+})
+
 
 export default router
