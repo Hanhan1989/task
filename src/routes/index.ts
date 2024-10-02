@@ -55,33 +55,39 @@ router.post('/tarea/data', async (req: Request, res: Response, next: NextFunctio
 })
 
 /* POST endpoint to update data */
-router.post('/tarea/update', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/tarea/update', async (req: Request, res: Response) => {
+  console.log('Cuerpo de la solicitud:', req.body); // Verificar la estructura del cuerpo
 
   try {
-    const { id, estado, posicion } = req.body; // Obtenemos solo id, estado y posicion
-    const taskRepository: TaskRepository = new TaskRepository();
+      const tasks = req.body.tasks; // Accede al array tasks
 
-    // Recuperamos la tarea actual para mantener el título (u otros datos)
-    const task: Task|null = await taskRepository.getTaskById(id); // Obtener la tarea actual
-    if (!task) {
-      return res.status(404).json({ message: 'Tarea no encontrada' });
-    }
+      // Procesar cada tarea individualmente
+      for (const task of tasks) {
+          const { id, estado, posicion } = task; // Extraer los valores
 
-    // Actualizamos el estado y la posición, y mantenemos el título original
-    const taskToUpdate: Task = {
-      id: id,
-      titulo: task.titulo, // Mantenemos el título existente
-      estado: estado,
-      posicion: posicion
-    };
+          const taskRepository: TaskRepository = new TaskRepository();
+          const existingTask: Task | null = await taskRepository.getTaskById(id);
 
-    // Usamos el método existente para actualizar
-    await taskRepository.updateTask(taskToUpdate);
+          if (!existingTask) {
+              console.log(`Tarea con ID ${id} no encontrada`);
+              continue; // Saltar si no se encuentra la tarea
+          }
 
-    res.status(200).json({ message: 'Tarea actualizada correctamente' });
+          // Actualizar la tarea manteniendo el título original
+          const taskToUpdate: Task = {
+              id: id,
+              titulo: existingTask.titulo, // Mantenemos el título existente
+              estado: estado,
+              posicion: posicion,
+          };
+
+          await taskRepository.updateTask(taskToUpdate);
+      }
+
+      res.status(200).json({ message: 'Tareas actualizadas correctamente' });
   } catch (error) {
-    console.error('Error actualizando la tarea:', error);
-    res.status(500).json({ message: 'Error actualizando la tarea' });
+      console.error('Error actualizando las tareas:', error);
+      res.status(500).json({ message: 'Error actualizando las tareas' });
   }
 })
 

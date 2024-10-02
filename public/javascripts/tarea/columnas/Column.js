@@ -23,10 +23,17 @@ export class Column {
         console.log('A columna:', evt.to.id)
 
         // Accediendo al valor de data-task-id desde el elemento movido
-        const taskId = Number(evt.item.dataset.taskId);
         const columnHelper = new ColumnHelper();
         const estado = columnHelper.getColumName(evt)
-        const data = {id: taskId, estado: estado, posicion: 8}
+        // Obtenemos todos los elementos de la columna "a la que fue movido" el ítem
+        const items = Array.from(evt.to.children);
+
+        // Recorremos todos los elementos para capturar sus IDs y posiciones
+        const tasks = items.map((item, index) => ({
+            id: Number(item.dataset.taskId), // Capturamos el taskId desde el atributo data-task-id
+            estado: estado, // Estado de la columna donde está el ítem
+            posicion: index + 1 // Nueva posición (sumamos 1 porque index es cero-based)
+        }));
 
         try {
             // Enviar los datos a la URL mediante el método POST
@@ -35,7 +42,7 @@ export class Column {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data), // Convertir el objeto a JSON
+                body: JSON.stringify({tasks}), // Convertir el objeto a JSON
             });
 
             // Verificar si la petición fue exitosa
