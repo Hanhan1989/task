@@ -5,7 +5,7 @@ export class TaskRepository {
   private dbInstance = DatabaseSqlite.getInstance()
   // Obtiene todas las tareas
   async getAllTasks(): Promise<Task[]> {
-    const query = 'SELECT * FROM tasks'
+    const query = 'SELECT * FROM tasks ORDER BY posicion ASC'
     const db = await this.dbInstance.openDb()
     const rows = await db.all(query)
     return rows ? (rows as Task[]) : []

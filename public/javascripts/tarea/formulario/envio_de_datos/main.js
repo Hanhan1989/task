@@ -28,7 +28,7 @@ async function handleSubmit(e) {
          if (response.ok) {
              const result = await response.json();
              console.log('Tarea enviada:', result);
-             tasks.tasksTodo.push(result.new_task)
+             await tasks.fetchTasks()
          } else {
              console.error('Error al enviar la tarea');
          }
