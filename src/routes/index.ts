@@ -71,12 +71,11 @@ router.post('/tarea/update', async (req: Request, res: Response) => {
               continue; // Saltar si no se encuentra la tarea
           }
 
-          // Actualizar la tarea manteniendo el título original
+          // Actualizar la tarea sólo el estado y posición
           const taskToUpdate: Task = {
-              id: id,
-              titulo: existingTask.titulo, // Mantenemos el título existente
+              ...existingTask,
               estado: estado,
-              posicion: posicion,
+              posicion: posicion
           };
 
           await taskRepository.updateTask(taskToUpdate);
@@ -104,8 +103,7 @@ router.post('/tarea/update/titulo', async (req: Request, res: Response) => {
 
     const taskToUpdate: Task = {
       ...existingTask,
-      id: id,
-      titulo: titulo, // Mantenemos el título existente
+      titulo: titulo,
     }
 
     await taskRepository.updateTask(taskToUpdate);
