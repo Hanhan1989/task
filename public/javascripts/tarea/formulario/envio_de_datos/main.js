@@ -29,6 +29,7 @@ async function handleSubmit(e) {
              const result = await response.json();
              console.log('Tarea enviada:', result);
              await tasks.fetchTasks()
+             form.reset()
          } else {
              console.error('Error al enviar la tarea');
          }
