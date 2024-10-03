@@ -37,7 +37,7 @@ export class Column {
 
         try {
             // Enviar los datos a la URL mediante el método POST
-            const response = await fetch('/tarea/update', {
+            const response = await fetch('/tasks/update', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

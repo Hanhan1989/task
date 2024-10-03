@@ -16,7 +16,7 @@ async function handleSubmit(e) {
 
      try {
          // Enviar los datos a la URL mediante el método POST
-         const response = await fetch('/tarea/data', {
+         const response = await fetch('/task/create', {
              method: 'POST',
              headers: {
                  'Content-Type': 'application/json',

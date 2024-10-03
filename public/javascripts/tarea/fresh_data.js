@@ -48,7 +48,7 @@ class Tasks {
     // Método para manejar la actualización de la tarea
     editTask(task, newValue) {
         // Enviar la actualización al servidor
-        fetch('/tarea/update/titulo', {
+        fetch('/task/update/title', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
