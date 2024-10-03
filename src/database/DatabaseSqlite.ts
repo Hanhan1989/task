@@ -2,6 +2,7 @@ import sqlite3 from 'sqlite3'
 import { open, Database } from 'sqlite'
 import { app } from 'electron'
 import path from 'path'
+import fs from 'fs' // Importa fs para leer archivos
 
 export class DatabaseSqlite {
   private static instance: DatabaseSqlite | null = null
@@ -45,17 +46,16 @@ export class DatabaseSqlite {
     return this.db
   }
 
-  async initialize(): Promise<void> {
-    const db = await this.openDb()
-    await db.exec(`
-      CREATE TABLE IF NOT EXISTS tasks (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        titulo TEXT,
-        estado TEXT,
-        posicion INTEGER
-      )
-    `)
-    console.log('Tabla "tasks" creada o ya existente.')
+// Lee el archivo .sql y lo ejecuta en la base de datos
+  private async loadSchema(db: Database): Promise<void> {
+    const schemaPath = path.join(__dirname, 'schema.sql') // El archivo .sql está en la misma carpeta que DatabaseSqlite
+    const schema = fs.readFileSync(schemaPath, 'utf-8') // Lee el archivo .sql
+    await db.exec(schema) // Ejecuta el contenido del archivo
   }
 
+  async initialize(): Promise<void> {
+    const db = await this.openDb()
+    await this.loadSchema(db) // Carga y ejecuta el schema SQL
+    console.log('Esquema cargado y tablas inicializadas.')
+  }
 }
