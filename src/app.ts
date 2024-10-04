@@ -33,6 +33,7 @@ app.use('/tasks', tasksRouter)
 
 // Configurar la carpeta 'node_modules' como estática para servir Bootstrap
 app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')))
+app.use('/bootstrap-icons', express.static(path.join(__dirname, '../node_modules/bootstrap-icons')));
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
