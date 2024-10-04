@@ -13,10 +13,8 @@ router.post('/create', async (req: Request, res: Response, next: NextFunction) =
 
   try {
     await taskRepository.createTask(newTask);
-    console.log('Nueva tarea creada:', newTask);
     res.status(200).json({ message: 'Datos recibidos correctamente', new_task: newTask });
   } catch (error) {
-    console.error('Error creando la tarea:', error);
     res.status(500).json({ message: 'Error al crear la tarea', error });
   }
 
@@ -30,7 +28,6 @@ router.post('/update/title', async (req: Request, res: Response) => {
     const existingTask: Task | null = await taskRepository.getTaskById(id);
 
     if (!existingTask) {
-      console.log(`Tarea con ID ${id} no encontrada`);
       return res.status(400).json({ error: 'no se encuentra la tarea' });
     }
 
@@ -42,7 +39,6 @@ router.post('/update/title', async (req: Request, res: Response) => {
     await taskRepository.updateTask(taskToUpdate);
     res.status(200).json({ message: 'Tareas actualizadas correctamente' });
   } catch (error) {
-    console.error('Error actualizando las tareas:', error);
     res.status(500).json({ message: 'Error actualizando las tareas' });
   }
 })

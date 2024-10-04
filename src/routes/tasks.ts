@@ -44,7 +44,6 @@ router.post('/update', async (req: Request, res: Response) => {
           const existingTask: Task | null = await taskRepository.getTaskById(id);
 
           if (!existingTask) {
-              console.log(`Tarea con ID ${id} no encontrada`);
               continue; // Saltar si no se encuentra la tarea
           }
 
@@ -60,7 +59,6 @@ router.post('/update', async (req: Request, res: Response) => {
 
       res.status(200).json({ message: 'Tareas actualizadas correctamente' });
   } catch (error) {
-      console.error('Error actualizando las tareas:', error);
       res.status(500).json({ message: 'Error actualizando las tareas' });
   }
 })
