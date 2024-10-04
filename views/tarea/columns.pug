@@ -1,14 +1,10 @@
-.col-4
-    h4 To Do
-    div#todo-column.list-group(data-bind="foreach: tasksTodo")
-        div.list-group-item-action.list-group-item( data-bind="text: titulo, event: { dblclick: $parent.enableEditing, blur: $parent.disableEditing }, attr: { 'data-task-id': id }")
 
-.col-4
-    h4 Working ...
-    div#working-column.list-group(data-bind="foreach: tasksWorking")
-        div.list-group-item-action.list-group-item(data-bind="text: titulo, event: { dblclick: $parent.enableEditing, blur: $parent.disableEditing }, attr: { 'data-task-id': id }")
-
-.col-4
-    h4 Done
-    div#done-column.list-group(data-bind="foreach: tasksDone")
-        div.list-group-item-action.list-group-item(data-bind="text: titulo, event: { dblclick: $parent.enableEditing, blur: $parent.disableEditing }, attr: { 'data-task-id': id }")
+each column in columns
+    .col-4
+        h4=column.title 
+        .list-group(id=column.id, data-bind=`foreach: ${column.task}`)
+            .list-group-item-action.list-group-item(data-bind="attr: { 'data-task-id': id }")
+                .row
+                    .col-11(data-bind="text: titulo, event: { dblclick: $parent.enableEditing, blur: $parent.disableEditing }")
+                    .col-1
+                        i.bi.bi-three-dots 
