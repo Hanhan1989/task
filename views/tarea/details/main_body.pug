@@ -1,1 +1,11 @@
 h1 cuerpo del modal
+
+form(action="/ruta-a-tu-endpoint", method="POST")
+    .mb-3
+        label.form-label(for="title") Title
+        input.form-control(type="text", id="title")
+
+    .mb-3
+        label.form-label(for="text-content") Text
+        textarea#text-content.form-control(rows="10")
+
