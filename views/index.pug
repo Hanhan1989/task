@@ -7,10 +7,12 @@ block content
       include tarea/form_new_task.pug
     .row
       include tarea/columns.pug
-      
+    #details-in-modal
+    include tarea/details/modal.pug 
 block javascripts
   script(src="/javascripts/lib/knockout.min.js")
   script(src="/javascripts/lib/Sortable.min.js")
   script(src="/javascripts/tarea/fresh_data.js")
   script(type="module", src='/javascripts/tarea/formulario/envio_de_datos/main.js')
   script(type="module", src="/javascripts/tarea/columnas/main.js") 
+  script(type="module", src="/javascripts/tarea/details/main.js") 

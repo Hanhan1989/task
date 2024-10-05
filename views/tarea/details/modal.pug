@@ -1,0 +1,16 @@
+// Modal
+.modal.fade(id="staticBackdrop", data-bs-backdrop="static", data-bs-keyboard="false", tabindex="-1", aria-labelledby="staticBackdropLabel", aria-hidden="true")
+    .modal-dialog.modal-fullscreen.modal-dialog-centered.text-center
+        .modal-content
+            .col-md-6.offset-md-3
+                .modal-header
+                    h1.modal-title.fs-5(id="staticBackdropLabel") TASK'S DETAILS
+                    button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+                .modal-body
+                    .row
+                        include main_body.pug
+                .modal-footer.flex-nowrap.p-0
+                    button.btn.btn-lg.btn-link.fs-6.text-decoration-none.col-6.py-3.m-0.rounded-0.border-end(type="button")
+                        strong GUARDAR
+                    button.btn.btn-lg.btn-link.fs-6.text-decoration-none.col-6.py-3.m-0.rounded-0(type="button", data-bs-dismiss="modal")
+                        | CERRAR
