@@ -13,7 +13,10 @@ export class ModalHandler {
     // Inicializar event listeners
     initialize() {
         this.modalTriggers.forEach(trigger => {
+            // Listener para abrir el Modal clicando los ... de las tareas
             trigger.addEventListener('click', (e) => this.handleTriggerClick(e))
+            // Listener para cerrar el modal con la tecla Esc
+            document.addEventListener('keydown', (event) => this.handleKeyDown(event))
         })
     }
 
@@ -33,6 +36,19 @@ export class ModalHandler {
         // Mostrar el modal usando await
         await this.showModal()
     }
+
+    // Manejar el evento de tecla presionada
+    handleKeyDown(event) {
+        if (event.key === 'Escape') { // Comprobar si la tecla presionada es Esc
+            this.closeModal();
+        }
+    }
+
+    // Cerrar el modal
+    closeModal() {
+        this.bootstrapModal.hide();
+    }
+
 
     // Obtener el ID de la tarea
     getTaskId(event) {
