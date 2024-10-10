@@ -72,4 +72,4 @@ class Tasks {
 
 // Instanciamos la clase Tasks y aplicamos los bindings
 const tasks = new Tasks();
-ko.applyBindings(tasks, document.getElementById('columnas'));
+ko.applyBindings(tasks, document.getElementById('columns'));
