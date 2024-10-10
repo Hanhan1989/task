@@ -16,7 +16,7 @@ export class TinyMCEEditor {
 
     setContent(content) {
       if(content){
-        tinymce.get(this.selector.substring(1)).setContent(content)
+        tinymce.get(this.selector.substring(1)).setContent(content) // "The ID of the selector should not have a #
       }
     }
 

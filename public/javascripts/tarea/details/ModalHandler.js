@@ -25,8 +25,6 @@ export class ModalHandler {
         // Obtener los datos usando DataFetcher
         const data = await this.dataFetcher.takeData(taskId);
 
-        console.log(data)
-
         // Si se obtienen datos, llenar los campos con FormFiller
         if (data) {
             this.formFiller.fillFormFields(data);
