@@ -1,7 +1,12 @@
+import { DataFetcher } from './DataFetcher.js'
+import { FormFiller } from './FormFiller.js'
+
 export class ModalHandler {
-    constructor() {
+    constructor(editor) {
         this.modalTriggers = document.querySelectorAll('.modal-trigger')
         this.bootstrapModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+        this.dataFetcher = new DataFetcher()
+        this.formFiller = new FormFiller(editor)
         this.initialize()
     }
 
@@ -16,6 +21,16 @@ export class ModalHandler {
     async handleTriggerClick(event) {
         const taskId = this.getTaskId(event)
         console.log('Task ID:', taskId)
+
+        // Obtener los datos usando DataFetcher
+        const data = await this.dataFetcher.takeData(taskId);
+
+        console.log(data)
+
+        // Si se obtienen datos, llenar los campos con FormFiller
+        if (data) {
+            this.formFiller.fillFormFields(data);
+        }
 
         // Mostrar el modal usando await
         await this.showModal()

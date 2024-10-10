@@ -39,5 +39,5 @@ async function handleSubmit(e) {
 }
 
 
-const form = document.getElementById('ajax-form');
+const form = document.getElementById('form-new-task');
 form.addEventListener('submit', handleSubmit);

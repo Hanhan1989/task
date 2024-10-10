@@ -1,7 +1,8 @@
 
 CREATE TABLE IF NOT EXISTS tasks (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  titulo TEXT,
-  estado TEXT,
+  titulo VARCHAR,
+  texto TEXT,
+  estado VARCHAR,
   posicion INTEGER
 );

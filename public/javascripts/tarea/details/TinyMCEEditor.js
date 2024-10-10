@@ -13,6 +13,13 @@ export class TinyMCEEditor {
         toolbar: 'undo redo | styleselect | bold italic | link image | code',
       });
     }
+
+    setContent(content) {
+      if(content){
+        tinymce.get(this.selector.substring(1)).setContent(content)
+      }
+    }
+
   }
   
   
