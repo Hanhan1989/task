@@ -1,3 +1,6 @@
+
+import { TaskDetailManager } from './details/TaskDetailManager.js';
+
 class Tasks {
 
     tasksTodo = ko.observableArray([]);
@@ -17,6 +20,9 @@ class Tasks {
             this.tasksDone(data.tasksDone);
         } catch (error) {
             console.error('Error al obtener los tasks:', error);
+        } finally {
+            const taskDetailManager = new TaskDetailManager(); 
+            taskDetailManager.initialize(); 
         }
     }
 
@@ -71,5 +77,5 @@ class Tasks {
 }
 
 // Instanciamos la clase Tasks y aplicamos los bindings
-const tasks = new Tasks();
+export const tasks = new Tasks();
 ko.applyBindings(tasks, document.getElementById('columns'));

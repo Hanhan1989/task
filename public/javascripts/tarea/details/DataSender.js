@@ -1,3 +1,5 @@
+import { tasks } from "../column_data.js";
+
 export class DataSender {
     constructor(modal, editor) {
       this.modal = modal;

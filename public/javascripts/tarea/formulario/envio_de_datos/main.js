@@ -1,3 +1,5 @@
+import { tasks } from "../../column_data.js"
+
 async function handleSubmit(e) {
     e.preventDefault() // Evitar el comportamiento por defecto del formulario
 
@@ -5,7 +7,6 @@ async function handleSubmit(e) {
      const form = e.target
      const formData = new FormData(form)
      const tareasTodo = tasks.tasksTodo()
-     console.log(tareasTodo)
      // Calcula la posición más baja de las tareas existentes y le suma 1 para asignar la nueva posición.
      // Esto asegura que la nueva tarea tendrá una posición única, justo después de la última tarea.
      const posicion = Math.max(...tareasTodo.map(item => Number(item.posicion))) + 1 
