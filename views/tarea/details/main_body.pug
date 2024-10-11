@@ -2,9 +2,11 @@
 form(action="#", method="POST" id="form-details")
     .mb-3
         label.form-label(for="title") Title
-        input.form-control(type="text", id="title")
+        input.form-control(type="text", id="title" name="title")
 
     .mb-3
         label.form-label(for="text-content") Text
-        textarea#text-content.form-control(rows="10")
+        textarea#text-content.form-control(rows="10" name="text")
+
+    input.form-control(type="hidden", name="id" id="task-id" value="")
 

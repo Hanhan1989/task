@@ -43,6 +43,30 @@ router.post('/update/title', async (req: Request, res: Response) => {
   }
 })
 
+/* POST endpoint to update*/
+router.post('/update', async (req: Request, res: Response) => {
+  try {
+    const { id, title, text } = req.body; // Accede al array tasks
+    const taskRepository: TaskRepository = new TaskRepository();
+    const existingTask: Task | null = await taskRepository.getTaskById(id);
+
+    if (!existingTask) {
+      return res.status(400).json({ error: 'no se encuentra la tarea' });
+    }
+
+    const taskToUpdate: Task = {
+      ...existingTask,
+      titulo: title,
+      texto: text
+    }
+
+    await taskRepository.updateTask(taskToUpdate);
+    res.status(200).json({ message: 'Tareas actualizadas correctamente' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error actualizando las tareas' });
+  }
+})
+
 /* POST endpoint to return specific task data */
 router.post('/show/id', async (req: Request, res: Response) => {
   try {

@@ -1,11 +1,13 @@
 import { DataFetcher } from './DataFetcher.js'
 import { FormFiller } from './FormFiller.js'
+import { DataSender } from './DataSender.js'
 
 export class ModalHandler {
     constructor(editor) {
         this.modalTriggers = document.querySelectorAll('.modal-trigger')
         this.bootstrapModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
         this.dataFetcher = new DataFetcher()
+        this.dataSender = new DataSender(this, editor)
         this.formFiller = new FormFiller(editor)
         this.initialize()
     }
@@ -16,8 +18,10 @@ export class ModalHandler {
             // Listener para abrir el Modal clicando los ... de las tareas
             trigger.addEventListener('click', (e) => this.handleTriggerClick(e))
             // Listener para cerrar el modal con la tecla Esc
-            document.addEventListener('keydown', (event) => this.handleKeyDown(event))
         })
+
+        document.addEventListener('keydown', (event) => this.handleKeyDown(event))
+        document.querySelector('#save-task-details').addEventListener('click', () => this.dataSender.sendData());
     }
 
     // Manejar el evento de click de cada modal trigger
@@ -32,6 +36,9 @@ export class ModalHandler {
         if (data) {
             this.formFiller.fillFormFields(data);
         }
+
+        //Poner el valor del id de la tarea en el campo oculto del formulario #form-details
+        document.getElementById('task-id').value = taskId
 
         // Mostrar el modal usando await
         await this.showModal()
