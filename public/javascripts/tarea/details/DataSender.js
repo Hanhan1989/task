@@ -28,7 +28,10 @@ export class DataSender {
   
         const result = await response.json();
         console.log('Datos enviados exitosamente:', result);
-  
+
+        // Refrescar los datos de las columnas, tasks es una variable global de KnockoutJs
+        await tasks.fetchTasks()
+
         // Cierra el modal si es necesario
         this.modal.closeModal();
       } catch (error) {
