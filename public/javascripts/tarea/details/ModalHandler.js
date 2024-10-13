@@ -20,7 +20,9 @@ export class ModalHandler {
             // Listener para cerrar el modal con la tecla Esc
         })
 
+        // Cerrar el modal con ESC del teclado
         document.addEventListener('keydown', (event) => this.handleKeyDown(event))
+        // Evento click para el botón del envío de datos al servidor
         document.querySelector('#save-task-details').addEventListener('click', () => this.dataSender.sendData());
     }
 
