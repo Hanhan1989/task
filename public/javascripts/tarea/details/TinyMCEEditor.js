@@ -13,10 +13,9 @@ export class TinyMCEEditor {
       });
     }
 
-    setContent(content) {
-      if(content){
-        tinymce.activeEditor.setContent(content)
-      }
+    setContent(text) {
+      const content = text ?? ''
+      tinymce.activeEditor.setContent(content)
     }
 
     getContent() {
