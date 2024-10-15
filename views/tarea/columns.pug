@@ -3,8 +3,8 @@ each column in columns
     .col-4
         h4=column.title 
         .list-group(id=column.id, data-bind=`foreach: ${column.task}`)
-            .list-group-item-action.list-group-item(data-bind="attr: { 'data-task-id': id }")
+            .list-group-item-action.list-group-item(data-bind="attr: { 'data-task-id': _id }")
                 .row
-                    .col-11(data-bind="text: titulo, event: { dblclick: $parent.enableEditing, blur: $parent.disableEditing }")
+                    .col-11(data-bind="text: _titulo, event: { dblclick: $parent.enableEditing, blur: $parent.disableEditing }")
                     .col-1
                         i.bi.bi-three-dots.modal-trigger
