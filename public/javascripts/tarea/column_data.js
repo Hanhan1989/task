@@ -43,7 +43,7 @@ class Tasks {
 
     // Guarda los cambios si el contenido ha cambiado
     saveChanges(task, element) {
-        const originalValue = task.titulo.trim();
+        const originalValue = task._titulo.trim();
         const newValue = element.innerText.trim();
 
         if (newValue !== originalValue) {
@@ -59,7 +59,7 @@ class Tasks {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id: task.id, titulo: newValue }),
+            body: JSON.stringify({ id: task._id, titulo: newValue }),
         })
         .then(response => {
             if (!response.ok) {
