@@ -1,6 +1,7 @@
 import { DataFetcher } from './DataFetcher.js'
 import { FormFiller } from './FormFiller.js'
 import { DataSender } from './DataSender.js'
+import { Actions } from './aside/Actions.js'
 
 export class ModalHandler {
     constructor(editor) {
@@ -17,13 +18,15 @@ export class ModalHandler {
         this.modalTriggers.forEach(trigger => {
             // Listener para abrir el Modal clicando los ... de las tareas
             trigger.addEventListener('click', (e) => this.handleTriggerClick(e))
-            // Listener para cerrar el modal con la tecla Esc
         })
 
         // Cerrar el modal con ESC del teclado
         document.addEventListener('keydown', (event) => this.handleKeyDown(event))
         // Evento click para el botón del envío de datos al servidor
         document.querySelector('#save-task-details').addEventListener('click', () => this.dataSender.sendData());
+        // Añadir evento correspondiente a los enlaces de la columna Aside
+        const actions = new Actions()
+        actions.initialize()
     }
 
     // Manejar el evento de click de cada modal trigger
