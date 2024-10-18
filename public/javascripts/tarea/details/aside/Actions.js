@@ -19,6 +19,12 @@ export class Actions {
         return document.getElementById('task-id').value
     }
 
+    confirmDeleteTask = function(task) {
+        if (confirm("Are you sure you want to delete this task?")) {
+            this.deleteTask();
+        }
+    }
+
     async deleteTask() {
         try {
             const response = await fetch(`/task/delete/${this.taskId}`, {
