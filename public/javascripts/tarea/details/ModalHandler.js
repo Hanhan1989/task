@@ -20,12 +20,10 @@ export class ModalHandler {
             trigger.addEventListener('click', (e) => this.handleTriggerClick(e))
         })
 
-        // Cerrar el modal con ESC del teclado
-        document.addEventListener('keydown', (event) => this.handleKeyDown(event))
         // Evento click para el botón del envío de datos al servidor
         document.querySelector('#save-task-details').addEventListener('click', () => this.dataSender.sendData());
         // Añadir evento correspondiente a los enlaces de la columna Aside
-        const actions = new Actions()
+        const actions = new Actions(this)
         actions.initialize()
     }
 
@@ -47,13 +45,6 @@ export class ModalHandler {
 
         // Mostrar el modal usando await
         await this.showModal()
-    }
-
-    // Manejar el evento de tecla presionada
-    handleKeyDown(event) {
-        if (event.key === 'Escape') { // Comprobar si la tecla presionada es Esc
-            this.closeModal();
-        }
     }
 
     // Cerrar el modal
