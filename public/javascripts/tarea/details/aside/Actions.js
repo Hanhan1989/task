@@ -19,7 +19,7 @@ export class Actions {
         return document.getElementById('task-id').value
     }
 
-    confirmDeleteTask = function(task) {
+    confirmDeleteTask() {
         if (confirm("Are you sure you want to delete this task?")) {
             this.deleteTask();
         }
