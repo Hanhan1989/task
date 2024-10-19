@@ -1,12 +1,13 @@
 
-form(action="#", method="POST" id="form-details")
-    .mb-3
+form(action="#", method="POST" id="form-details" onSubmit="return false;")
+    .mb-3.form-floating
         label.form-label(for="title") Title
-        input.form-control(type="text", id="title" name="title")
+        input.form-control-plaintext(type="text", id="title" name="title")
 
     .mb-3
         label.form-label(for="text-content") Text
-        textarea#text-content.form-control(rows="10" name="text")
-
-    input.form-control(type="hidden", name="id" id="task-id" value="")
+        div#text-content.form-control-plaintext
+    
+    input.form-control(type="hidden", name="text" id="text-hidden")
+    input(type="hidden", name="id" id="task-id" value="")
 

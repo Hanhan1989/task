@@ -4,6 +4,8 @@ body {
   user-select: none; /* Previene la selección de texto */
 }
 
-a {
-  color: #00B7FF;
+/* Quitar los bordes del editor TinyMCE */
+.tox {
+  border: none !important; /* Quita el borde del contenedor */
+  box-shadow: none !important; /* Quita la sombra si hay alguna */
 }
