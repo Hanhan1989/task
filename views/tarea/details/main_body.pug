@@ -1,11 +1,11 @@
 
 form(action="#", method="POST" id="form-details" onSubmit="return false;")
-    .mb-3.form-floating
-        label.form-label(for="title") Title
+    .mb-3
+        label.form-label.fs-4.text-decoration-underline(for="title") Title
         input.form-control-plaintext(type="text", id="title" name="title")
 
     .mb-3
-        label.form-label(for="text-content") Text
+        label.form-label.fs-4.text-decoration-underline(for="text-content") Text
         div#text-content.form-control-plaintext
     
     input.form-control(type="hidden", name="text" id="text-hidden")
