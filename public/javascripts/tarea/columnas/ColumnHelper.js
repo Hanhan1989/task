@@ -1,7 +1,7 @@
 import {STATES} from './States.js'
 
 export class ColumnHelper {
-    // Método para obtener el estado basado en la columna
+    // Método para obtener el status basado en la columna
     getColumName(evt) {
         let state;
 

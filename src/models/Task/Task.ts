@@ -1,7 +1,7 @@
 export interface Task {
   id: number
-  titulo: string
-  texto: string
-  estado: string
-  posicion: number
+  title: string
+  text: string
+  status: string
+  position: number
 }

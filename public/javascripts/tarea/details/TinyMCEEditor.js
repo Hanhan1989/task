@@ -5,7 +5,7 @@ export class TinyMCEEditor {
   
     init() {
       tinymce.init({
-        selector: this.selector,  // Selecciona el campo de texto enriquecido
+        selector: this.selector,  // Selecciona el campo de text enriquecido
         license_key: 'gpl', // Añade esta línea para usar la licencia GPL
         promotion: false, // Eliminar el botón de promoción
         plugins: ['link', 'image', 'code', 'quickbars'],

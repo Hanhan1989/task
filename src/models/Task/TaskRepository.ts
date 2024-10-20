@@ -6,12 +6,12 @@ export class TaskRepository {
 
   // Convierte el objeto plano en una instancia de TaskClass
   private mapRowToTask(row: any): TaskClass {
-    return new TaskClass(row.id, row.titulo, row.texto, row.estado, row.posicion);
+    return new TaskClass(row.id, row.title, row.text, row.status, row.position);
   }
 
   // Obtiene todas las tareas
   async getAllTasks(): Promise<TaskClass[]> {
-    const query = 'SELECT * FROM tasks ORDER BY posicion ASC';
+    const query = 'SELECT * FROM tasks ORDER BY position ASC';
     const db = await this.dbInstance.openDb();
     const rows = await db.all(query);
     return rows ? rows.map(this.mapRowToTask) : [];
@@ -27,16 +27,16 @@ export class TaskRepository {
 
   // Crea una nueva tarea
   async createTask(task: Omit<TaskClass, 'id'>): Promise<void> {
-    const query = 'INSERT INTO tasks (titulo, texto, estado, posicion) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO tasks (title, text, status, position) VALUES (?, ?, ?, ?)';
     const db = await this.dbInstance.openDb();
-    await db.run(query, task.titulo, task.texto, task.estado, task.posicion);
+    await db.run(query, task.title, task.text, task.status, task.position);
   }
 
   // Actualiza una tarea existente por su ID
   async updateTask(task: TaskClass): Promise<void> {
-    const query = 'UPDATE tasks SET titulo = ?, texto = ?, estado = ?, posicion = ? WHERE id = ?';
+    const query = 'UPDATE tasks SET title = ?, text = ?, status = ?, position = ? WHERE id = ?';
     const db = await this.dbInstance.openDb();
-    await db.run(query, task.titulo, task.texto, task.estado, task.posicion, task.id);
+    await db.run(query, task.title, task.text, task.status, task.position, task.id);
   }
 
   // Elimina una tarea por su ID

@@ -10,8 +10,8 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     const taskRepository: TaskRepository = new TaskRepository();
     const tasks: TaskClass[] = await taskRepository.getAllTasks();
 
-    // Función para agrupar las tareas por estado
-    const groupTasksByState = (state: string) => tasks.filter(task => task.estado === state);
+    // Función para agrupar las tareas por status
+    const groupTasksByState = (state: string) => tasks.filter(task => task.status === state);
 
     // Agrupación de tareas
     const tasksTodo = groupTasksByState('todo');
@@ -37,7 +37,7 @@ router.post('/update', async (req: Request, res: Response) => {
 
     // Procesar cada tarea individualmente
     for (const task of tasks) {
-      const { id, estado, posicion } = task; // Extraer los valores
+      const { id, status, position } = task; // Extraer los valores
 
       const taskRepository: TaskRepository = new TaskRepository();
       const existingTask: TaskClass | null = await taskRepository.getTaskById(id);
@@ -47,8 +47,8 @@ router.post('/update', async (req: Request, res: Response) => {
       }
 
       // Actualizar la tarea usando los setters
-      existingTask.estado = estado;
-      existingTask.posicion = posicion;
+      existingTask.status = status;
+      existingTask.position = position;
 
       await taskRepository.updateTask(existingTask);
     }

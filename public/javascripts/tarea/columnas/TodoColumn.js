@@ -4,7 +4,7 @@ import {STATES} from './States.js'
 export class TodoColumn extends Column
 {
     id = STATES.column1.id
-    estado = STATES.column1.name
+    status = STATES.column1.name
 
     constructor() {
         super(); // Llama al constructor de la clase base

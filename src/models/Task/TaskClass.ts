@@ -2,17 +2,17 @@ import { Task } from "./Task";
 
 export class TaskClass implements Task {
   private _id: number;
-  private _titulo: string;
-  private _texto: string;
-  private _estado: string;
-  private _posicion: number;
+  private _title: string;
+  private _text: string;
+  private _status: string;
+  private _position: number;
 
-  constructor(id: number, titulo: string, texto: string, estado: string, posicion: number) {
+  constructor(id: number, title: string, text: string, status: string, position: number) {
     this._id = id;
-    this._titulo = titulo;
-    this._texto = texto;
-    this._estado = estado;
-    this._posicion = posicion;
+    this._title = title;
+    this._text = text;
+    this._status = status;
+    this._position = position;
   }
 
   // Getters
@@ -20,36 +20,36 @@ export class TaskClass implements Task {
     return this._id;
   }
 
-  get titulo(): string {
-    return this._titulo;
+  get title(): string {
+    return this._title;
   }
 
-  get texto(): string {
-    return this._texto;
+  get text(): string {
+    return this._text;
   }
 
-  get estado(): string {
-    return this._estado;
+  get status(): string {
+    return this._status;
   }
 
-  get posicion(): number {
-    return this._posicion;
+  get position(): number {
+    return this._position;
   }
 
   // Setters
-  set titulo(value: string) {
-    this._titulo = value;
+  set title(value: string) {
+    this._title = value;
   }
 
-  set texto(value: string) {
-    this._texto = value;
+  set text(value: string) {
+    this._text = value;
   }
 
-  set estado(value: string) {
-    this._estado = value;
+  set status(value: string) {
+    this._status = value;
   }
 
-  set posicion(value: number) {
-    this._posicion = value;
+  set position(value: number) {
+    this._position = value;
   }
 }

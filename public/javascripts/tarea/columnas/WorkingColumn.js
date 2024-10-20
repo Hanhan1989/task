@@ -4,7 +4,7 @@ import {STATES} from './States.js'
 export class WorkingColumn extends Column
 {
   id = STATES.column2.id
-  estado = STATES.column2.name
+  status = STATES.column2.name
 
     constructor() {
         super(); // Llama al constructor de la clase base

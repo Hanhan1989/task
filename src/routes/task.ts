@@ -6,8 +6,8 @@ const router = Router();
 
 /* POST endpoint to receive data and create a new task */
 router.post('/create', async (req: Request, res: Response, next: NextFunction) => {
-  const { new_task: titulo, posicion, texto } = req.body;
-  const newTask: Omit<TaskClass, 'id'> = { titulo, estado: 'todo', posicion, texto };
+  const { new_task: title, position, text } = req.body;
+  const newTask: Omit<TaskClass, 'id'> = { title, status: 'todo', position, text };
   const taskRepository: TaskRepository = new TaskRepository();
 
   try {
@@ -21,7 +21,7 @@ router.post('/create', async (req: Request, res: Response, next: NextFunction) =
 /* POST endpoint to update only the title */
 router.post('/update/title', async (req: Request, res: Response) => {
   try {
-    const { id, titulo } = req.body;
+    const { id, title } = req.body;
     const taskRepository: TaskRepository = new TaskRepository();
     const existingTask: TaskClass | null = await taskRepository.getTaskById(id);
 
@@ -29,7 +29,7 @@ router.post('/update/title', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'No se encuentra la tarea' });
     }
 
-    existingTask.titulo = titulo; // Utiliza el setter para actualizar el título
+    existingTask.title = title; // Utiliza el setter para actualizar el título
 
     await taskRepository.updateTask(existingTask);
     res.status(200).json({ message: 'Tarea actualizada correctamente' });
@@ -49,8 +49,8 @@ router.post('/update', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'No se encuentra la tarea' });
     }
 
-    existingTask.titulo = title; // Utiliza el setter
-    existingTask.texto = text;   // Utiliza el setter
+    existingTask.title = title; // Utiliza el setter
+    existingTask.text = text;   // Utiliza el setter
 
     await taskRepository.updateTask(existingTask);
     res.status(200).json({ message: 'Tarea actualizada correctamente' });

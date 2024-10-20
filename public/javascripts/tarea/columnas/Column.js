@@ -3,7 +3,7 @@ import {ColumnHelper} from './ColumnHelper.js'
 export class Column {
     // La clase hija asignará su propio id
     id = ''
-    estado = ''
+    status = ''
 
     constructor() {
 
@@ -24,15 +24,15 @@ export class Column {
 
         // Accediendo al valor de data-task-id desde el elemento movido
         const columnHelper = new ColumnHelper();
-        const estado = columnHelper.getColumName(evt)
+        const status = columnHelper.getColumName(evt)
         // Obtenemos todos los elementos de la columna "a la que fue movido" el ítem
         const items = Array.from(evt.to.children);
 
-        // Recorremos todos los elementos para capturar sus IDs y posiciones
+        // Recorremos todos los elementos para capturar sus IDs y positiones
         const tasks = items.map((item, index) => ({
             id: Number(item.dataset.taskId), // Capturamos el taskId desde el atributo data-task-id
-            estado: estado, // Estado de la columna donde está el ítem
-            posicion: index + 1 // Nueva posición (sumamos 1 porque index es cero-based)
+            status: status, // status de la columna donde está el ítem
+            position: index + 1 // Nueva posición (sumamos 1 porque index es cero-based)
         }));
 
         try {

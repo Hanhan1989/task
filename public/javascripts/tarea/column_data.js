@@ -37,13 +37,13 @@ class Tasks {
     disableEditing(task, event) {
         const element = event.target;
         element.contentEditable = false; // Desactiva la edición
-        const contexto_del_viewModel = ko.contextFor(event.target).$root;
-        contexto_del_viewModel.saveChanges(task, element); // Guarda los cambios
+        const context_del_viewModel = ko.contextFor(event.target).$root;
+        context_del_viewModel.saveChanges(task, element); // Guarda los cambios
     }
 
     // Guarda los cambios si el contenido ha cambiado
     saveChanges(task, element) {
-        const originalValue = task._titulo.trim();
+        const originalValue = task._title.trim();
         const newValue = element.innerText.trim();
 
         if (newValue !== originalValue) {
@@ -59,7 +59,7 @@ class Tasks {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id: task._id, titulo: newValue }),
+            body: JSON.stringify({ id: task._id, title: newValue }),
         })
         .then(response => {
             if (!response.ok) {
