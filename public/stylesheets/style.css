@@ -4,8 +4,7 @@ body {
   user-select: none; /* Previene la selección de texto */
 }
 
-/* Quitar los bordes del editor TinyMCE */
-.tox {
-  border: none !important; /* Quita el borde del contenedor */
-  box-shadow: none !important; /* Quita la sombra si hay alguna */
+/* Hacer el espacio de la columna más alta para el arrastre de la tarea */
+#columns .list-group{
+  height: 200px;
 }
