@@ -6,7 +6,7 @@ export class TaskRepository {
 
   // Convierte el objeto plano en una instancia de TaskClass
   private mapRowToTask(row: any): TaskClass {
-    return new TaskClass(row.id, row.title, row.text, row.status, row.position);
+    return new TaskClass(row.id, row.title, row.text, row.status, row.position, row.active, row.created_at, row.updated_at);
   }
 
   // Obtiene todas las tareas
@@ -26,7 +26,7 @@ export class TaskRepository {
   }
 
   // Crea una nueva tarea
-  async createTask(task: Omit<TaskClass, 'id'>): Promise<void> {
+  async createTask(task: Omit<TaskClass, 'id' | 'active' | 'created_at' | 'updated_at'>): Promise<void> {
     const query = 'INSERT INTO tasks (title, text, status, position) VALUES (?, ?, ?, ?)';
     const db = await this.dbInstance.openDb();
     await db.run(query, task.title, task.text, task.status, task.position);

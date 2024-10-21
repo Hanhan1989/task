@@ -7,7 +7,7 @@ const router = Router();
 /* POST endpoint to receive data and create a new task */
 router.post('/create', async (req: Request, res: Response, next: NextFunction) => {
   const { new_task: title, position, text } = req.body;
-  const newTask: Omit<TaskClass, 'id'> = { title, status: 'todo', position, text };
+  const newTask: Omit<TaskClass, 'id' | 'active' | 'created_at' | 'updated_at'> = { title, status: 'todo', position, text };
   const taskRepository: TaskRepository = new TaskRepository();
 
   try {
