@@ -17,6 +17,14 @@ export class TaskRepository {
     return rows ? rows.map(this.mapRowToTask) : [];
   }
 
+  // Obtiene todas las tareas activas
+  async getAllActiveTasks(): Promise<TaskClass[]> {
+    const query = 'SELECT * FROM tasks WHERE active = 1 ORDER BY position ASC';
+    const db = await this.dbInstance.openDb();
+    const rows = await db.all(query);
+    return rows ? rows.map(this.mapRowToTask) : [];
+  }
+
   // Obtiene una tarea por su ID
   async getTaskById(id: number): Promise<TaskClass | null> {
     const query = 'SELECT * FROM tasks WHERE id = ?';
@@ -38,6 +46,13 @@ export class TaskRepository {
     const db = await this.dbInstance.openDb();
     await db.run(query, task.title, task.text, task.status, task.position, task.id);
   }
+
+    // Actualiza el campo active a una tarea por su ID
+    async updateTaskToActive(id: number, active: number): Promise<void> {
+      const query = 'UPDATE tasks SET active = ? WHERE id = ?';
+      const db = await this.dbInstance.openDb();
+      await db.run(query, active, id);
+    }
 
   // Elimina una tarea por su ID
   async deleteTask(id: number): Promise<void> {

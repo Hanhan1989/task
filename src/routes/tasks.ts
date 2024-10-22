@@ -8,7 +8,7 @@ const router = Router();
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const taskRepository: TaskRepository = new TaskRepository();
-    const tasks: TaskClass[] = await taskRepository.getAllTasks();
+    const tasks: TaskClass[] = await taskRepository.getAllActiveTasks();
 
     // Función para agrupar las tareas por status
     const groupTasksByState = (state: string) => tasks.filter(task => task.status === state);

@@ -98,5 +98,28 @@ router.delete('/delete/:id', async (req: Request, res: Response, next: NextFunct
   }
 });
 
+// Método Post para actualizar el campo active a 1 de una tarea por su ID
+router.put('/close/:id', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+      const { id } = req.params;  // Captura el ID desde los parámetros de la URL
+
+      // Verifica que el ID sea válido
+      if (!id) {
+          return res.status(400).json({ message: 'ID de la tarea es requerido.' });
+      }
+
+      // Llama al método para eliminar la tarea
+      const inactive = 0;
+      const taskRepository: TaskRepository = new TaskRepository();
+      await taskRepository.updateTaskToActive(Number(id), inactive); // Convierte el id a número
+
+      // Responde con un mensaje de éxito
+      return res.json({ message: `Tarea con ID ${id} cerrada exitosamente` });
+  } catch (error) {
+      console.error('Error al eliminar la tarea:', error);
+      return res.status(500).json({ message: 'Error interno del servidor' });
+  }
+});
+
 
 export default router;

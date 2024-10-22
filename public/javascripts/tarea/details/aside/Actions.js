@@ -44,8 +44,23 @@ export class Actions {
         }
     }
     
-    closeTask() {
-        console.log("CLOSE EVENT", this.taskId)
+    async closeTask() {
+        try {
+            const response = await fetch(`/task/close/${this.taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            const data = await response.json()
+            console.log(data)
+        } catch (error) {
+            console.error('Error al eliminar la tarea:', error)
+        } finally {
+            this.modal.closeModal()
+            // Refrescar los datos de las columnas, tasks es una variable global de KnockoutJs
+            await tasks.fetchTasks()
+        }
     }
 
 }
