@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS tasks (
 );
 
 -- Trigger para actualizar el campo 'updated_at' cada vez que un registro es modificado
-CREATE TRIGGER update_tasks_timestamp
+CREATE TRIGGER IF NOT EXISTS update_tasks_timestamp
 AFTER UPDATE ON tasks
 FOR EACH ROW
 BEGIN
