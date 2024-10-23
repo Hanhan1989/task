@@ -3,18 +3,18 @@ import { Comment } from "./Comment";
 export class CommentClass implements Comment {
   private _id: number;
   private _task_id: number;
-  private _comment_text: string;
+  private _text: string;
   private _created_at: string;
 
   constructor(
     id: number, 
     task_id: number, 
-    comment_text: string, 
+    text: string, 
     created_at: string
   ) {
     this._id = id;
     this._task_id = task_id;
-    this._comment_text = comment_text;
+    this._text = text;
     this._created_at = created_at;
   }
 
@@ -27,8 +27,8 @@ export class CommentClass implements Comment {
     return this._task_id;
   }
 
-  get comment_text(): string {
-    return this._comment_text;
+  get text(): string {
+    return this._text;
   }
 
   get created_at(): string {
@@ -36,8 +36,8 @@ export class CommentClass implements Comment {
   }
 
   // Setters
-  set comment_text(value: string) {
-    this._comment_text = value;
+  set text(value: string) {
+    this._text = value;
   }
 
   set task_id(value: number) {

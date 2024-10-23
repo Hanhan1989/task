@@ -6,7 +6,7 @@ export class CommentRepository {
 
   // Convierte el objeto plano en una instancia de CommentClass
   private mapRowToComment(row: any): CommentClass {
-    return new CommentClass(row.id, row.task_id, row.comment_text, row.created_at);
+    return new CommentClass(row.id, row.task_id, row.text, row.created_at);
   }
 
   // Obtiene todos los comentarios
@@ -35,9 +35,9 @@ export class CommentRepository {
 
   // Crea un nuevo comentario
   async createComment(comment: Omit<CommentClass, 'id' | 'created_at'>): Promise<void> {
-    const query = 'INSERT INTO comments (task_id, comment_text) VALUES (?, ?)';
+    const query = 'INSERT INTO comments (task_id, text) VALUES (?, ?)';
     const db = await this.dbInstance.openDb();
-    await db.run(query, comment.task_id, comment.comment_text);
+    await db.run(query, comment.task_id, comment.text);
   }
 
   // Elimina un comentario por su ID
