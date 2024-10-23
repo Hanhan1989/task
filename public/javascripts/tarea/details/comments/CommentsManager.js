@@ -1,4 +1,5 @@
 import { tasks } from "../../column_data.js"
+import { TinyMCEEditor } from "../TinyMCEEditor.js";
 
 export class CommentsManager {
 
@@ -10,8 +11,14 @@ export class CommentsManager {
     }
 
     initialize(){
+
+        // Inicializar TinyEditor
+        const editor = new TinyMCEEditor('#comments-form textarea')
+        editor.defaultConfig.inline = false
+        editor.defaultConfig.height = 200
+        editor.init()
+
         const comment_section = document.getElementById('comments-section')
-        
         // Verifica si ya se aplicaron los bindings
         if (!ko.dataFor(comment_section)) {
             ko.applyBindings(this, comment_section)

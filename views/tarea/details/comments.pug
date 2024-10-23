@@ -1,8 +1,11 @@
 h4 Comments
 hr
-#comments-section
-    .comment(data-bind="foreach: comments")
-        .card.mt-2
-            .card-header 12/05/2024
-            .card-body
-                p.card-text.comment-text(data-bind="text: text")
+#comments-section(data-bind="foreach: comments")
+    .card.mt-2
+        .card-header 12/05/2024
+        .card-body
+            p.card-text.comment-text(data-bind="text: text")
+
+form.mt-4#comments-form
+    textarea
+    button.btn.btn-primary.mt-2(type="submit") Submit
