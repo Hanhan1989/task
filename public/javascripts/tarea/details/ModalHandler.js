@@ -2,6 +2,7 @@ import { DataFetcher } from './DataFetcher.js'
 import { FormFiller } from './FormFiller.js'
 import { DataSender } from './DataSender.js'
 import { Actions } from './aside/Actions.js'
+import { CommentsManager } from './comments/CommentsManager.js'
 
 export class ModalHandler {
     constructor(editor) {
@@ -25,6 +26,10 @@ export class ModalHandler {
         // Añadir evento correspondiente a los enlaces de la columna Aside
         const actions = new Actions(this)
         actions.initialize()
+
+        // Añadir sección de comentarios
+        const comments = new CommentsManager()
+        comments.initialize()
     }
 
     // Manejar el evento de click de cada modal trigger

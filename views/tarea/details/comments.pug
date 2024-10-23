@@ -1,0 +1,8 @@
+h4 Comments
+hr
+#comments-section
+    .comment(data-bind="foreach: comments")
+        .card.mt-2
+            .card-header 12/05/2024
+            .card-body
+                p.card-text.comment-text(data-bind="text: text")
