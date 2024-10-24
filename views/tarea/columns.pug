@@ -1,7 +1,7 @@
 
-each column in columns
-    .col-4
-        h4=column.title 
+each column, index in columns
+    .col-4(class=index !== columns.length - 1 ? 'border-end' : '')
+        h4=column.title
         .list-group(id=column.id, data-bind=`foreach: ${column.task}`)
             .list-group-item-action.list-group-item(data-bind="attr: { 'data-task-id': _id }")
                 .row

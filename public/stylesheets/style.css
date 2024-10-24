@@ -6,5 +6,5 @@ body {
 
 /* Hacer el espacio de la columna más alta para el arrastre de la tarea */
 #columns .list-group{
-  height: 200px;
+  height: 70vh; /* La columna ocupará el 90% de la altura de la ventana */
 }
