@@ -7,11 +7,20 @@ import { CommentsManager } from './comments/CommentsManager.js'
 export class ModalHandler {
     constructor(editor) {
         this.modalTriggers = document.querySelectorAll('.modal-trigger')
-        this.bootstrapModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
         this.dataFetcher = new DataFetcher()
         this.dataSender = new DataSender(this, editor)
         this.formFiller = new FormFiller(editor)
         this.initialize()
+    }
+
+    get bootstrapModal() {
+        const modalElement = document.getElementById('staticBackdrop');
+        let modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (!modalInstance) {
+            modalInstance = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+        }
+
+        return modalInstance
     }
 
     // Inicializar event listeners
