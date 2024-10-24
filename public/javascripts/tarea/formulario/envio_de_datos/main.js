@@ -9,7 +9,7 @@ async function handleSubmit(e) {
      const tareasTodo = tasks.tasksTodo()
      // Calcula la posición más baja de las tareas existentes y le suma 1 para asignar la nueva posición.
      // Esto asegura que la nueva tarea tendrá una posición única, justo después de la última tarea.
-     const position = (tareasTodo.length === 0) ? 1 : Math.max(...tareasTodo.map(item => Number(item.position))) + 1
+     const position = (tareasTodo.length === 0) ? 1 : Math.max(...tareasTodo.map(item => Number(item._position))) + 1
      formData.set('position', position)
 
      // Convertir FormData a un objeto simple para enviarlo como JSON
