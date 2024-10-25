@@ -14,8 +14,16 @@ export class TinyMCEEditor {
       this.defaultConfig.selector = selector;
     }
 
+    get selectorWithoutHash()
+    {
+      return this.defaultConfig.selector.replace('#', '')
+    }
+
     init() {
-      tinymce.init(this.defaultConfig);
+      const editorExists = tinymce.get(this.selectorWithoutHash)
+      if(!editorExists){
+        tinymce.init(this.defaultConfig);
+      }
     }
 
     setContent(text) {

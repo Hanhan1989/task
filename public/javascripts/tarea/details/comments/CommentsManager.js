@@ -13,7 +13,7 @@ export class CommentsManager {
     initialize(){
 
         // Inicializar TinyEditor
-        const editor = new TinyMCEEditor('#comments-form textarea')
+        const editor = new TinyMCEEditor('#comment-content')
         editor.defaultConfig.inline = false
         editor.defaultConfig.height = 200
         editor.defaultConfig.plugins = editor.defaultConfig.plugins.filter(item => item !== 'quickbars')
