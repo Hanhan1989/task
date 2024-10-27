@@ -3,9 +3,9 @@ hr
 #comments-section
     .comments(data-bind="foreach: comments")
         .card.mt-2
-            .card-header 12/05/2024
+            .card-header(data-bind="text: _created_at")
             .card-body
-                p.card-text.comment-text(data-bind="text: text")
+                p.card-text.comment-text(data-bind="html: _text")
 
     form.mt-4#comments-form(data-bind="submit: sendData")
         textarea#comment-content(name="text")

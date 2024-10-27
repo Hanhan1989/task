@@ -23,7 +23,7 @@ export class ModalHandler {
         return modalInstance
     }
 
-    // Inicializar event listeners
+    // Inicializar event listeners, antes de abrir el modal
     initialize() {
         this.modalTriggers.forEach(trigger => {
             // Listener para abrir el Modal clicando los ... de las tareas
@@ -35,10 +35,6 @@ export class ModalHandler {
         // Añadir evento correspondiente a los enlaces de la columna Aside
         const actions = new Actions(this)
         actions.initialize()
-
-        // Añadir sección de comentarios
-        const comments = new CommentsManager()
-        comments.initialize()
     }
 
     // Manejar el evento de click de cada modal trigger
@@ -56,6 +52,10 @@ export class ModalHandler {
 
         //Poner el valor del id de la tarea en el campo oculto del formulario #form-details
         document.getElementById('task-id').value = taskId
+
+        // Añadir sección de comentarios
+        const comments = new CommentsManager(taskId)
+        comments.initialize()
 
         // Mostrar el modal usando await
         await this.showModal()

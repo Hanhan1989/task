@@ -3,10 +3,10 @@ import { TinyMCEEditor } from "../TinyMCEEditor.js";
 export class CommentsManager {
 
     comments = ko.observableArray([]);
+    taskId = ko.observable()
 
-    constructor(
-    ) {
-        this.fetchComments()
+    constructor(taskId) {
+        this.taskId(taskId)
     }
 
     initialize(){
@@ -23,15 +23,21 @@ export class CommentsManager {
         if (!ko.dataFor(comment_section)) {
             ko.applyBindings(this, comment_section)
         }
-    }
 
+        this.fetchComments()
 
-    get taskId() {
-        return document.getElementById('task-id').value
     }
 
     async fetchComments() {
-        this.comments([{text: 'hola'}, {text: 'mundo'}])
+
+        try {
+            const response = await fetch('/comments/tarea/' + this.taskId())
+            const data = await response.json()
+            this.comments(data.comments)
+        } catch (error) {
+            console.error('Error al obtener los comments:', error)
+        } 
+
     }
 
     async sendData() {

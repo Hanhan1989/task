@@ -9,6 +9,7 @@ import indexRouter from './routes/index'
 import taskRouter from './routes/task'
 import tasksRouter from './routes/tasks'
 import commentRouter from './routes/comment'
+import commentsRouter from './routes/comments'
 
 const app = express()
 const db = DatabaseSqlite.getInstance()
@@ -32,6 +33,7 @@ app.use('/', indexRouter)
 app.use('/task', taskRouter)
 app.use('/tasks', tasksRouter)
 app.use('/comment', commentRouter)
+app.use('/comments', commentsRouter)
 
 // Configurar la carpeta 'node_modules' como estática para servir Bootstrap
 app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')))
