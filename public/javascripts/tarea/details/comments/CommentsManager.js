@@ -18,11 +18,13 @@ export class CommentsManager {
         editor.defaultConfig.plugins = editor.defaultConfig.plugins.filter(item => item !== 'quickbars')
         editor.init()
 
-        // Verifica si ya se aplicaron los bindings
-        const comment_section = document.getElementById('comments-section')
-        if (!ko.dataFor(comment_section)) {
-            ko.applyBindings(this, comment_section)
-        }
+      // Elimina los bindings existentes
+      const comment_section = document.getElementById('comments-section')
+      if (ko.dataFor(comment_section)) {
+          ko.cleanNode(comment_section)
+      }
+      
+      ko.applyBindings(this, comment_section)
 
         this.fetchComments()
 
