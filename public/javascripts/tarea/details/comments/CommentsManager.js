@@ -18,24 +18,53 @@ export class CommentsManager {
         this.editor.defaultConfig.plugins = this.editor.defaultConfig.plugins.filter(item => item !== 'quickbars')
         this.editor.init()
 
-      // Elimina los bindings existentes
       const comment_section = document.getElementById('comments-section')
-      if (ko.dataFor(comment_section)) {
-          ko.cleanNode(comment_section)
+      if (!ko.dataFor(comment_section)) {
+          ko.applyBindings(this, comment_section)
       }
-      
-      ko.applyBindings(this, comment_section)
 
         this.fetchComments()
-
     }
+    
+    commentCardTemplate(comments) {
+        let htmlString = '';
+    
+        comments.forEach(comment => {
+            htmlString += `<div class="card mt-2" data-id="${comment._id}">
+                <div class="card-header">
+                    <div class="comment-date">
+                        <span>${comment._created_at}</span>
+                        <div class="comment-delete float-end">
+                            <span class="bi bi-x delete-button"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text comment-text">${comment._text}</p>
+                </div>
+            </div>`;
+        });
+    
+        return htmlString;
+    }
+    
 
     async fetchComments() {
 
         try {
             const response = await fetch('/comments/tarea/' + this.taskId())
             const data = await response.json()
-            this.comments(data.comments)
+            console.log(data.comments)
+            const commentsContainer = document.querySelector("#comments-section .comments");
+            commentsContainer.innerHTML = this.commentCardTemplate(data.comments);
+    
+            // Agregar event listeners a cada botón de eliminar después de renderizar el HTML
+            commentsContainer.querySelectorAll(".delete-button").forEach(button => {
+                button.addEventListener("click", (e) => {
+                    const commentId = e.target.closest(".card").getAttribute("data-id");
+                    this.deleteComment(commentId, e); // Llamada al método de la clase
+                });
+            });
         } catch (error) {
             console.error('Error al obtener los comments:', error)
         } 
@@ -80,15 +109,15 @@ export class CommentsManager {
         }
     }
 
-    async deleteComment (comment, e) {
+    async deleteComment (commentId, e) {
         
         try {
-            const response = await fetch(`/comment/delete/${comment._id}`, {
+            const response = await fetch(`/comment/delete/${commentId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(comment)
+                body: JSON.stringify({id: commentId})
             })
     
             if (!response.ok) {
@@ -98,9 +127,7 @@ export class CommentsManager {
             const result = await response.json()
             console.log('Comentario eliminado:', result)
 
-            // Acceder al contexto padre y refrescar los comentarios
-            const parentViewModel = ko.contextFor(e.target).$root
-            await parentViewModel.fetchComments() // Llama a fetchComments en el contexto padre
+            this.fetchComments()
             
         } catch (error) {
             console.error('Error al eliminar el comentario:', error)

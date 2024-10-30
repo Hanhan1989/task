@@ -1,16 +1,8 @@
 h4 Comments
 hr
 #comments-section
-    .comments(data-bind="foreach: comments")
-        .card.mt-2
-            .card-header
-                .comment-date
-                    span(data-bind="text: _created_at")
-                    .comment-delete.float-end
-                        span.bi.bi-x(data-bind="click: $parent.deleteComment")
-            .card-body
-                p.card-text.comment-text(data-bind="html: _text")
-
+    .comments
+    
     form.mt-4#comments-form(data-bind="submit: sendData")
         textarea#comment-content(name="text")
         button.btn.btn-primary.mt-2(type="submit" ) Submit
