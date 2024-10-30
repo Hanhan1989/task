@@ -4,19 +4,19 @@ export class CommentsManager {
 
     comments = ko.observableArray([]);
     taskId = ko.observable()
+    editor = null
 
     constructor(taskId) {
         this.taskId(taskId)
     }
 
-    initialize(){
-
+    initialize() {
         // Inicializar TinyEditor
-        const editor = new TinyMCEEditor('#comment-content')
-        editor.defaultConfig.inline = false
-        editor.defaultConfig.height = 200
-        editor.defaultConfig.plugins = editor.defaultConfig.plugins.filter(item => item !== 'quickbars')
-        editor.init()
+        this.editor = new TinyMCEEditor('#comment-content')
+        this.editor.defaultConfig.inline = false
+        this.editor.defaultConfig.height = 200
+        this.editor.defaultConfig.plugins = this.editor.defaultConfig.plugins.filter(item => item !== 'quickbars')
+        this.editor.init()
 
       // Elimina los bindings existentes
       const comment_section = document.getElementById('comments-section')
@@ -75,6 +75,8 @@ export class CommentsManager {
 
         } catch (error) {
             console.error('Error al enviar los datos:', error)
+        } finally {
+            this.editor.setContent('') // Limpia el campo del editor después de enviar los datos
         }
     }
 
