@@ -18,4 +18,26 @@ router.put('/create', async (req: Request, res: Response, next: NextFunction) =>
     }
 })
 
+// Método DELETE para "eliminar" un comentario por su ID
+router.delete('/delete/:id', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id } = req.params // Captura el ID desde los parámetros de la URL
+
+        // Verifica que el ID sea válido
+        if (!id) {
+            return res.status(400).json({ message: 'ID del comentario es requerido.' })
+        }
+
+        // Llama al método para eliminar el comentario en el repositorio
+        const commentRepository = new CommentRepository()
+        await commentRepository.deleteComment(Number(id)) // Convierte el ID a número
+
+        // Responde con un mensaje de éxito
+        return res.json({ message: `Comentario con ID ${id} eliminado exitosamente` })
+    } catch (error) {
+        console.error('Error al eliminar el comentario:', error)
+        return res.status(500).json({ message: 'Error interno del servidor' })
+    }
+})
+
 export default router

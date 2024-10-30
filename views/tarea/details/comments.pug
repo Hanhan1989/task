@@ -3,7 +3,11 @@ hr
 #comments-section
     .comments(data-bind="foreach: comments")
         .card.mt-2
-            .card-header(data-bind="text: _created_at")
+            .card-header
+                .comment-date
+                    span(data-bind="text: _created_at")
+                    .comment-delete.float-end
+                        span.bi.bi-x(data-bind="click: $parent.deleteComment")
             .card-body
                 p.card-text.comment-text(data-bind="html: _text")
 

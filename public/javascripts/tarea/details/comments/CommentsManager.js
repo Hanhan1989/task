@@ -80,6 +80,34 @@ export class CommentsManager {
         }
     }
 
+    async deleteComment (comment, e) {
+        
+        try {
+            const response = await fetch(`/comment/delete/${comment._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(comment)
+            })
+    
+            if (!response.ok) {
+                throw new Error('Error al eliminar el comentario')
+            }
+    
+            const result = await response.json()
+            console.log('Comentario eliminado:', result)
+
+            // Acceder al contexto padre y refrescar los comentarios
+            const parentViewModel = ko.contextFor(e.target).$root
+            await parentViewModel.fetchComments() // Llama a fetchComments en el contexto padre
+            
+        } catch (error) {
+            console.error('Error al eliminar el comentario:', error)
+        }
+
+    }
+
 }
 
 
