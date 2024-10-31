@@ -28,6 +28,12 @@ export class DatabaseSqlite {
     } else {
       this.dbPath = path.resolve(__dirname, '../../data/mytask.db')
     }
+
+    // Crea el directorio si no existe
+    const dirPath = path.dirname(this.dbPath)
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true })
+    }
   }
 
   private isElectron(): boolean {
