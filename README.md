@@ -25,7 +25,7 @@ TASK is a desktop application built with Electron and Express, developed using T
 
 ## Commands
 
-build: Compiles TypeScript code to JavaScript.
+build: Compiles TypeScript code to JavaScript. Run the command with Git Bash
 
 ````bash
 npm run build
