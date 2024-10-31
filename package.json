@@ -9,7 +9,7 @@
     "dev": "ts-node ./src/bin/www",
     "copy-sql": "cp ./src/database/schema.sql dist\\database",
     "electron": "electron .",
-    "build-electron": "copy-sql && electron-builder"
+    "build-electron": "electron-builder"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
@@ -41,6 +41,7 @@
     "appId": "com.example.myap",
     "files": [
       "dist/**/*",
+      "public/**/*",
       "views/**/*",
       "database/*.sql",
       "node_modules/**/*",
