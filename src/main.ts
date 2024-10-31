@@ -22,6 +22,9 @@ function createWindow(): void {
         }
     });
 
+    // Quitar el menú
+    mainWindow.setMenu(null);
+
     // Cargar la aplicación Express dentro de la ventana Electron
     mainWindow.loadURL('http://localhost:3000');
 
