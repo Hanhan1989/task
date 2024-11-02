@@ -90,9 +90,13 @@ class Tasks {
         } catch (error) {
             console.error('Error al eliminar la tarea:', error)
         } finally {
-            const context_del_viewModel = ko.contextFor(event.target).$root;
-            await context_del_viewModel.fetchTasks()
-            // await this.fetchTasks()
+
+            location.reload() 
+
+            //Todo No funciona al cambiar una tarea de estado, es problema de la integración del sortablejs y knockout
+            // const context_del_viewModel = ko.contextFor(event.target).$root;
+            // await context_del_viewModel.fetchTasks()
+
         }
     }
 }
