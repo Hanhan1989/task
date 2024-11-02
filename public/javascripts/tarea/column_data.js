@@ -1,5 +1,5 @@
 
-import { TaskDetailManager } from './details/TaskDetailManager.js';
+// import { TaskDetailManager } from './details/TaskDetailManager.js';
 
 class Tasks {
 
@@ -21,8 +21,8 @@ class Tasks {
         } catch (error) {
             console.error('Error al obtener los tasks:', error);
         } finally {
-            const taskDetailManager = new TaskDetailManager(); 
-            taskDetailManager.initialize(); 
+            // const taskDetailManager = new TaskDetailManager(); 
+            // taskDetailManager.initialize(); 
         }
     }
 

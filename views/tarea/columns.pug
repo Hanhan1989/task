@@ -5,8 +5,8 @@ each column, index in columns
         .list-group(id=column.id, data-bind=`foreach: ${column.task}`)
             .list-group-item-action.list-group-item(data-bind="attr: { 'data-task-id': _id }")
                 .row
-                    .col-10(data-bind="text: _title, event: { dblclick: $parent.enableEditing, blur: $parent.disableEditing }")
-                    .col-1
-                        i.bi.bi-three-dots.modal-trigger
+                    .col-11(data-bind="text: _title, event: { dblclick: $parent.enableEditing, blur: $parent.disableEditing }")
+                    //- .col-1
+                    //-     i.bi.bi-three-dots.modal-trigger
                     .col-1 
                         i.bi.bi-x(data-bind="click: $parent.deleteTask")
