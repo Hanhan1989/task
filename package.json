@@ -1,6 +1,7 @@
 {
-  "name": "myap",
-  "version": "0.0.0",
+  "name": "Tasks",
+  "version": "0.0.1",
+  "autor": "Hanhan Chen",
   "private": true,
   "main": "dist/main.js",
   "scripts": {
