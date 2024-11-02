@@ -74,6 +74,27 @@ class Tasks {
             console.error('Error:', error);
         });
     }
+
+    async deleteTask(task, event){
+        console.log(task)
+
+        try {
+            const response = await fetch(`/task/delete/${task._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            const data = await response.json()
+            console.log(data)
+        } catch (error) {
+            console.error('Error al eliminar la tarea:', error)
+        } finally {
+            const context_del_viewModel = ko.contextFor(event.target).$root;
+            await context_del_viewModel.fetchTasks()
+            // await this.fetchTasks()
+        }
+    }
 }
 
 // Instanciamos la clase Tasks y aplicamos los bindings
