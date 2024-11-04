@@ -2,9 +2,9 @@ import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import expressApp from './app'; // Importa tu archivo app.ts de Express
 
-// Configura tu servidor Express en el puerto 3000
+// Configura tu servidor Express en el puerto 8888
 expressApp.listen(8888, () => {
-    console.log('Servidor Express corriendo en http://localhost:3000');
+    console.log('Servidor Express corriendo en http://localhost:8888');
 });
 
 let mainWindow: BrowserWindow | null = null;
@@ -26,7 +26,7 @@ function createWindow(): void {
     mainWindow.setMenu(null);
 
     // Cargar la aplicación Express dentro de la ventana Electron
-    mainWindow.loadURL('http://localhost:3000');
+    mainWindow.loadURL('http://localhost:8888');
 
     mainWindow.on('closed', () => {
         mainWindow = null;
