@@ -3,7 +3,7 @@ import * as path from 'path';
 import expressApp from './app'; // Importa tu archivo app.ts de Express
 
 // Configura tu servidor Express en el puerto 3000
-expressApp.listen(3000, () => {
+expressApp.listen(8888, () => {
     console.log('Servidor Express corriendo en http://localhost:3000');
 });
 
