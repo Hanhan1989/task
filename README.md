@@ -2,6 +2,8 @@
 
 TASK is a desktop application built with Electron and Express, developed using TypeScript. This project includes a basic structure for a web application with an Express backend and a desktop user interface using Electron.
 
+![tasks gif](./docs/tasks.gif)
+
 ## Features
 
 - **Backend**: Express.js with TypeScript support.
